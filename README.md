@@ -1,17 +1,48 @@
 # Your Project's Name
 
-One or two paragraphs providing an overview of your project.
+This project is a recreation of the MB's game ['Simon'](https://en.wikipedia.org/wiki/Simon_(game)).   
 
-Essentially, this part is your sales pitch.
+Simon is a simple memory game: the computer plays (with lit buttons and sounds) a sequence (starting at one) of four buttons, 
+then the player takes a turn and attempts to press the same buttons in the same order.  
+If the player is successful the computer plays the same sequence and appends another random button onto the end, 
+and the player again attempts to follow the increased sequence.
+
+The project will be built in HTML and CSS with Bootstrap 4, using Javascript with JQuery for the logic. 
+The project will be built by Test Driven Development, using Jasmine. 
  
 ## UX
  
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
+This project is intended for people who want to play Simon, they could have played Simon before or they could be new to the game.
+- As a new player, I want to be able to read instructions for the game, so I can know how to play it
+- As an existing player, I want to be able to play the game, so I can play the game
 
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
-- As a user type, I want to perform an action, so that I can achieve a goal.
+To facilitate these requirements the application will be laid out as per [this wireframe](docs/wireframes.jpg)
 
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
+The logic of the application will be along the lines of:
+1. User presses any of the four buttons to start
+2. App checks ready state
+    1. If game hasn't started, do initial things
+        1. Play start up sequence
+        2. Set pattern array blank, pick random button, append to array
+        2. Set current score to zero
+        3. Play pattern
+    2. Else, check if playing pattern
+        1. Ignore button presses whilst pattern playing
+    3. Else, check button is correct button at current position in pattern array
+        1. If correct, play happy chime and check if more elements in array or go to next stage
+            1. More elements
+                1. Move position in pattern array up one
+                2. Wait for user to press another button
+            2. Next stage
+                1. Pick random button, append to pattern array
+                2. Play pattern
+                3. Wait for player to press a button
+        2. If incorrect
+            1. Play unhappy chime
+            2. Set high score if current score higher than previous high score
+            3. Set ready state to pregame 
+
+
 
 ## Features
 
