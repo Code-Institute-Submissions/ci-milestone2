@@ -8,7 +8,6 @@ If the player is successful the computer plays the same sequence and appends ano
 and the player again attempts to follow the increased sequence.
 
 The project will be built in HTML and CSS with Bootstrap 4, using Javascript with JQuery for the logic. 
-The project will be built by Test Driven Development, using Jasmine. 
  
 ## UX
  

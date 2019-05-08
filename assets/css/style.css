@@ -1,0 +1,19 @@
+/* Game buttons */
+.game-button {
+    min-height: 3rem;
+    margin: 5px;
+    background-color: gray;
+}
+
+.button-yellow {
+    background-color: yellow;
+}
+.button-blue {
+    background-color: blue;
+}
+.button-red {
+    background-color: red;
+}
+.button-green {
+    background-color: green;
+}
