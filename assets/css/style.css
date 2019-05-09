@@ -8,12 +8,25 @@
 .button-yellow {
     background-color: yellow;
 }
+.button-yellow-lit {
+    background-color: aqua;
+}
+
 .button-blue {
     background-color: blue;
+}
+.button-blue-lit {
+    background-color: aqua;
 }
 .button-red {
     background-color: red;
 }
+.button-red-lit {
+    background-color: aqua;
+}
 .button-green {
     background-color: green;
+}
+.button-green-lit {
+    background-color: aqua;
 }
