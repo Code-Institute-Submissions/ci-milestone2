@@ -30,6 +30,14 @@ let btnRed = {
     chimeBad: "4b.ogg"
 };
 
+// ########## Binding click events to elements ##########
+
+$(btnYellow.element).click(function(){onClickGameButton(btnYellow)});
+$(btnBlue.element).click(function(){onClickGameButton(btnBlue)});
+$(btnGreen.element).click(function(){onClickGameButton(btnGreen)});
+$(btnRed.element).click(function(){onClickGameButton(btnRed)});
+
+
 
 
 // ########## Functions ##########
@@ -37,4 +45,8 @@ let btnRed = {
 // Taken from w3schools (https://www.w3schools.com/js/js_random.asp)
 function rand(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+function onClickGameButton(gb){
+    $(gb.element).toggleClass(gb.litClass)
 }
