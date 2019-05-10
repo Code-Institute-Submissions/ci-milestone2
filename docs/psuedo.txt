@@ -1,0 +1,82 @@
+1. User presses any of the four buttons to start
+2. App checks ready state
+    1. If game hasn't started, do initial things
+        1. Play start up sequence
+        2. Set pattern array blank, pick random button, append to array
+        2. Set current score to zero
+        3. Play pattern
+    2. Else, check if playing pattern
+        1. Ignore button presses whilst pattern playing
+    3. Else, check button is correct button at current position in pattern array
+        1. If correct, play happy chime and check if more elements in array or go to next stage
+            1. More elements
+                1. Move position in pattern array up one
+                2. Wait for user to press another button
+            2. Next stage
+                1. Pick random button, append to pattern array
+                2. Play pattern
+                3. Wait for player to press a button
+        2. If incorrect
+            1. Play unhappy chime
+            2. Set high score if current score higher than previous high score
+            3. Set ready state to pregame 
+            
+start()
+    READYSTATE = UNREADY
+    score = 0 
+    pattern = []
+    patPos = 0
+    startButton.label = "Restart"
+    nextRound()
+    
+nextRound()
+    READYSTATE = UNREADY
+    pattern += rand(1,4)
+    patPos = 0
+    playPattern()
+    READYSTATE = READY
+    
+playPattern()
+    FOR index IN pattern UNTIL pattern.len
+        SWITCH pattern[index].value
+            CASE 1:
+                playButton(btnYellow, TRUE)
+            CASE 2: 
+                playButton(btnBlue, TRUE)
+            CASE 3: 
+                playButton(btnGreen, TRUE)
+            CASE 4: 
+                playButton(btnRed, TRUE)
+    
+    
+playButton(button, successful)
+    if successful = TRUE
+        playSound(button.chimeGood)
+    else
+        playSound(button.chimeBad)
+    button.element.addClass(button.litClass)
+    WAIT(500)
+    button.element.removeClass(button.litClass)
+
+updateScores()
+    htmlcurrscore.value = score
+    if score > hiscore
+        htmlhiscore.value = score
+    
+gameButtonClick(gb)
+    if READYSTATE == OFF
+        return start()              // Starts the game as game not yet started
+    elseif READYSTATE == UNREADY
+        return                      // We don't want player input to do anything whilst game is unready
+    elseif READYSTATE == READY      // Game is now ready for player input
+        if gb.btnID == pattern[patPos].value
+            playButton(gb, TRUE)
+            patPos++
+            if patPos > pattern.len
+                score++
+                updateScores()
+                nextRound()
+        else
+            playButton(gb, FALSE)
+            READYSTATE = GAMEOVER
+        
