@@ -12,4 +12,30 @@ Whilst building this project I tested as I developed, below are the notes of the
         - After some reading I found this was due to calling the function with a parameter, this caused the code to call the function straight away when adding the event handler.
     2. I changed the function to be an annonymus function which would then call the wanted function: '$(btnBlue.element).click(function(){onClickGameButton(btnBlue)});'
         - This worked as expected; the function did not call until the button was clicked, and the test code in the function executed correctly upon clicking the button
-3. 
+3. Test Start button works
+    1. It didn't do anything
+        - This was because I had forgotten the () at the end of the function name in the button's onclick attribute.    
+    2. Added the missing brackets and tried again. 
+        - This fired off the JS onClickStartButton function as expected
+4. onClickStartButton() - this should:
+    1. Set the ready state to UNREADY
+        - Pass 
+    2. Set score, patPos to zero
+        - Pass
+    3. Set pattern to a blank list
+        - Pass
+    4. Change the start button's label to 'Restart'
+        - Pass
+    5. Call nextRound()
+        - Pass
+5. nextRound() - this should:
+    1. Set ready state to UNREADY
+        - Pass
+    2. Add a random int between 1 and 4 to the pattern list
+        1. FAIL - '+=' causes the returned value and pattern array to be converted to strings instead of added to the array
+        2. 
+    3. Set patPos to zero
+        - Pass
+    4. Call playPattern()
+    5. Set ready state to READY
+        - Pass
