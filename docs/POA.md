@@ -24,11 +24,11 @@
     - Objects
     - onClick events
     - functions
-        - start
-        - nextRound
-        - playPattern
-        - playButton
-        - updateScores
+        - ~start~
+        - ~nextRound~
+        - ~playPattern~
+        - ~playButton~
+        - ~updateScores~
         - gameButtonClick
 6. Testing doc
     - In dev notes

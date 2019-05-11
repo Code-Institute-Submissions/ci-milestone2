@@ -58,6 +58,8 @@ playButton(button, successful)
     WAIT(500)
     button.element.removeClass(button.litClass)
 
+####################################
+
 updateScores()
     htmlcurrscore.value = score
     if score > hiscore

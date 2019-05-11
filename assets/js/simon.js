@@ -60,10 +60,71 @@ function rand(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function playSound(file){
+    let speaker = new Audio();
+    speaker.src = "../sounds/" + file;
+    speaker.play()
+}
+
 function onClickStartButton(){
-    
+    readyState = UNREADY;
+    score = 0 ;
+    pattern = [];
+    patPos = 0;
+    $("#btn-start").text("Restart");
+    nextRound();
+}
+
+function nextRound(){
+    readyState = UNREADY;
+    pattern += rand(1,4);
+    patPos = 0;
+    playPattern()
+    readyState = READY;
+}
+
+function playPattern(){
+    for (let i in pattern) {
+        switch(i){
+            case 1:
+                playButton(btnYellow, true);
+                break;
+            case 2:
+                playButton(btnBlue, true);
+                break;
+            case 3:
+                playButton(btnGreen, true);
+                break;
+            case 4:
+                playButton(btnRed, true);
+                break;
+        }
+    }
+}
+
+async function playButton(button, successful){
+    if(successful === true){
+        playSound(button.chimeGood);
+    } else {
+        playSound(button.chimeBad);
+    }
+    $(button.element).addClass(button.litClass);
+    sleep(500);
+    $(button.element).removeClass(button.litClass);
+}
+
+function updateScores(){
+    $("#curr-score").text(score);
+    if(score > hiscore){
+        hiscore = score;
+        $("#high-score").text(hiscore);
+    }
 }
 
 function onClickGameButton(gb){
-    $(gb.element).toggleClass(gb.litClass)
+    $(gb.element).toggleClass(gb.litClass);
 }
