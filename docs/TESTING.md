@@ -33,9 +33,41 @@ Whilst building this project I tested as I developed, below are the notes of the
         - Pass
     2. Add a random int between 1 and 4 to the pattern list
         1. FAIL - '+=' causes the returned value and pattern array to be converted to strings instead of added to the array
-        2. 
+        2. Changed to use .push() function, now returns correctly as an array
     3. Set patPos to zero
         - Pass
     4. Call playPattern()
+        - Calls correctly
     5. Set ready state to READY
         - Pass
+6. playPattern()
+    1. This will go through the pattern array
+        - Pass
+    2. A switch will check which button to playButton
+        - Was checking the index value instead of the value of the item at the index, changed to pattern[i] and now checks correctly
+    3. The play button function will be called with correct params
+        - Pass
+    4. The buttons should play 1 by 1 with a 500ms delay from the playing function
+        1. This does not happen, all buttons play at once as playButton function is asynchronous, so the next iteration in the loop executes without delay
+        2. Changed playPattern to async and added delay to its loop as well
+        3. This would've caused the readyState to be set to ready whilst pattern was playing due to nextRound setting readyState, so moved that into this function to execute after the loop.
+7. playButton()
+    1. Checks successful parameter then calls playSound to play relevent beep
+        - Pass
+    2. Uses JQuery to add litClass to button
+        - Pass
+    3. Waits a delay interval
+        - Forgot the await keyword at first, but otherwise Pass
+    4. Removes litClass
+        - Pass
+8. gameButtonClick()
+    1. Checks if game has started, starts if it hasn't
+        - Pass
+    2. Checks if game is unready, rejects click if so
+        - Pass
+    3. Checks if ready then does below
+        - Pass
+    4. Checks if correct button is pressed by comparing btnID with value of current position in pattern array
+    5. If successful, calls playButton, increments patPos up
+        3. Checks if there are no more remaining items in pattern array
+            1. If there isn't, then score is increased, updateScores is called, nextRound is called

@@ -58,8 +58,6 @@ playButton(button, successful)
     WAIT(500)
     button.element.removeClass(button.litClass)
 
-####################################
-
 updateScores()
     htmlcurrscore.value = score
     if score > hiscore
@@ -74,7 +72,7 @@ gameButtonClick(gb)
         if gb.btnID == pattern[patPos].value
             playButton(gb, TRUE)
             patPos++
-            if patPos > pattern.len
+            if patPos >= pattern.len
                 score++
                 updateScores()
                 nextRound()

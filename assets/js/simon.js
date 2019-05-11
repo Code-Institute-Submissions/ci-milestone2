@@ -66,8 +66,8 @@ function sleep(ms) {
 
 function playSound(file){
     let speaker = new Audio();
-    speaker.src = "../sounds/" + file;
-    speaker.play()
+//    speaker.src = "../sounds/" + file;
+//    speaker.play();
 }
 
 function onClickStartButton(){
@@ -84,12 +84,11 @@ function nextRound(){
     pattern.push(rand(1,4));
     patPos = 0;
     playPattern()
-    readyState = READY;
 }
 
-function playPattern(){
+async function playPattern(){
     for (let i in pattern) {
-        switch(i){
+        switch(pattern[i]){
             case 1:
                 playButton(btnYellow, true);
                 break;
@@ -103,7 +102,9 @@ function playPattern(){
                 playButton(btnRed, true);
                 break;
         }
+        await sleep(1500);
     }
+    readyState = READY
 }
 
 async function playButton(button, successful){
@@ -113,7 +114,7 @@ async function playButton(button, successful){
         playSound(button.chimeBad);
     }
     $(button.element).addClass(button.litClass);
-    sleep(500);
+    await sleep(1000);
     $(button.element).removeClass(button.litClass);
 }
 
@@ -126,5 +127,22 @@ function updateScores(){
 }
 
 function onClickGameButton(gb){
-    $(gb.element).toggleClass(gb.litClass);
+    if (readyState == OFF) {
+        return onClickStartButton();
+    } else if (readyState == UNREADY) {
+        return;
+    } else if (readyState == READY){
+        if (gb.btnId == pattern[patPos]) {
+            playButton(gb, true);
+            patPos++;
+            if (patPos >= pattern.length){
+                score++;
+                updateScores();
+                nextRound()
+            }
+        } else {
+            playButton(gb, false);
+            readyState = OVER;
+        }
+    }
 }
