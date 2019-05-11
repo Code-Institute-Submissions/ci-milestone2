@@ -81,7 +81,7 @@ function onClickStartButton(){
 
 function nextRound(){
     readyState = UNREADY;
-    pattern += rand(1,4);
+    pattern.push(rand(1,4));
     patPos = 0;
     playPattern()
     readyState = READY;
