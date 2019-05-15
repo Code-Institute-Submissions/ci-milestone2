@@ -11,7 +11,7 @@ var score = 0;
 var hiscore = 0;
 var readyState = OFF;
 var pattern = [];
-var patPos = 0
+var patPos = 0;
 
 
 // ########## Game Button Objects ##########
@@ -73,6 +73,7 @@ function playSound(file){
 function onClickStartButton(){
     readyState = UNREADY;
     score = 0 ;
+    updateScores();
     pattern = [];
     patPos = 0;
     $("#btn-start").text("Restart");
@@ -83,8 +84,8 @@ async function nextRound(){
     readyState = UNREADY;
     pattern.push(rand(1,4));
     patPos = 0;
-    await sleep(2500)
-    playPattern()
+    await sleep(2500);
+    playPattern();
 }
 
 async function playPattern(){
@@ -105,7 +106,7 @@ async function playPattern(){
         }
         await sleep(1500);
     }
-    readyState = READY
+    readyState = READY;
 }
 
 async function playButton(button, successful){
@@ -131,7 +132,7 @@ function updateScores(){
 }
 
 function onClickGameButton(gb){
-    if (readyState == OFF) {
+    if (readyState == OFF || readyState == OVER) {
         return onClickStartButton();
     } else if (readyState == UNREADY) {
         return;
@@ -142,7 +143,7 @@ function onClickGameButton(gb){
             if (patPos >= pattern.length){
                 score++;
                 updateScores();
-                nextRound()
+                nextRound();
             }
         } else {
             playButton(gb, false);
