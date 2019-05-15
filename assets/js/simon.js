@@ -79,10 +79,11 @@ function onClickStartButton(){
     nextRound();
 }
 
-function nextRound(){
+async function nextRound(){
     readyState = UNREADY;
     pattern.push(rand(1,4));
     patPos = 0;
+    await sleep(2500)
     playPattern()
 }
 

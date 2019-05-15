@@ -78,3 +78,9 @@ Whilst building this project I tested as I developed, below are the notes of the
     8. If wrong button is pressed then calls playButton to play unsuccesful sound and sets readyState to Game Over
         - Pass
 
+# Feature Complete: Playtesting
+Now that the core functions of game have been written and tested I can begin testing the gameplay.
+
+The first issue was that when the new round played its sequence the animation for the previous button press was still playing, this made it confusing as sometimes the first button of the pattern was the last button pressed, so they would overlap.
+- To get around this I added async to nextRound() and used the sleep() function to add a delay before playing the pattern, to give the previous animation time to finish. 
+- This 2.5 second delay works
