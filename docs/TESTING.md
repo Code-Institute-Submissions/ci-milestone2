@@ -89,3 +89,7 @@ The second issue is that Game Overs currently aren't very obvious if you have th
 
 Third issue is that the buttons can be clicked to start a new game, but during the game over state the buttons do nothing, which was counter intuitive and made it look like the game had froze
 - Changed the onClickGameButton() function to also call the start function if the game was in an OVER state
+
+Minor issues:
+- Score showing previous game's score on new game
+    - Added a call to updateScores() on start function

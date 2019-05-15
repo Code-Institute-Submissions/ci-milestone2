@@ -1,4 +1,9 @@
 /* Game buttons */
+body {
+    background-color: black;
+    color: white;
+}
+
 .game-button {
     min-height: 3rem;
     margin: 5px;
