@@ -30,3 +30,6 @@
 .button-green-lit {
     background-color: aqua;
 }
+.button-unlit {
+    background-color: darkgray;
+}

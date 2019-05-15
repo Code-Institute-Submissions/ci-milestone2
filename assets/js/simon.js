@@ -111,12 +111,15 @@ async function playPattern(){
 async function playButton(button, successful){
     if(successful === true){
         playSound(button.chimeGood);
+        $(button.element).addClass(button.litClass);
+        await sleep(1000);
+        $(button.element).removeClass(button.litClass);
     } else {
         playSound(button.chimeBad);
+        $(button.element).addClass("button-unlit");
+        await sleep(1000);
+        $(button.element).removeClass("button-unlit");
     }
-    $(button.element).addClass(button.litClass);
-    await sleep(1000);
-    $(button.element).removeClass(button.litClass);
 }
 
 function updateScores(){

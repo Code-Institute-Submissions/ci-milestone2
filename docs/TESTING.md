@@ -83,4 +83,7 @@ Now that the core functions of game have been written and tested I can begin tes
 
 The first issue was that when the new round played its sequence the animation for the previous button press was still playing, this made it confusing as sometimes the first button of the pattern was the last button pressed, so they would overlap.
 - To get around this I added async to nextRound() and used the sleep() function to add a delay before playing the pattern, to give the previous animation time to finish. 
-- This 2.5 second delay works
+    - This 2.5 second delay works
+
+The second issue is that Game Overs currently aren't very obvious if you have the game muted (or are deaf).
+- So as part of the Game Over sequence I made the button go dark (switch off) to make it look more obvious.
