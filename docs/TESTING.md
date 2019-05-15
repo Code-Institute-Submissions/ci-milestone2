@@ -68,6 +68,13 @@ Whilst building this project I tested as I developed, below are the notes of the
     3. Checks if ready then does below
         - Pass
     4. Checks if correct button is pressed by comparing btnID with value of current position in pattern array
+        - Pass 
     5. If successful, calls playButton, increments patPos up
-        3. Checks if there are no more remaining items in pattern array
-            1. If there isn't, then score is increased, updateScores is called, nextRound is called
+        - Pass
+    6. Checks if there are no more remaining items in pattern array. If there isn't, then score is increased, updateScores is called, nextRound is called
+        - Pass
+    7. If there are remaining items then function exits and waits for next button press
+        - Pass
+    8. If wrong button is pressed then calls playButton to play unsuccesful sound and sets readyState to Game Over
+        - Pass
+
