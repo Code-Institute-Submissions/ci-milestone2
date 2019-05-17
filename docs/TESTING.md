@@ -93,3 +93,4 @@ Third issue is that the buttons can be clicked to start a new game, but during t
 Minor issues:
 - Score showing previous game's score on new game
     - Added a call to updateScores() on start function
+- The game rounds have a slight delay before playing for the first time, it would be good to add some preload method to the sounds

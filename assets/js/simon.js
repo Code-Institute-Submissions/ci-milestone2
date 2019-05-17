@@ -19,29 +19,29 @@ let btnYellow = {
     btnId: 1, 
     element: $("#btn-yellow"),
     litClass: "button-yellow-lit",
-    chimeGood: "1a.ogg",
-    chimeBad: "1b.ogg"
+    chimeGood: "ya.ogg",
+    chimeBad: "yb.ogg"
 };
 let btnBlue = {
     btnId: 2, 
     element: $("#btn-blue"),
     litClass: "button-blue-lit",
-    chimeGood: "2a.ogg",
-    chimeBad: "2b.ogg"
+    chimeGood: "ba.ogg",
+    chimeBad: "bb.ogg"
 };
 let btnGreen = {
     btnId: 3, 
     element: $("#btn-green"),
     litClass: "button-green-lit",
-    chimeGood: "3a.ogg",
-    chimeBad: "3b.ogg"
+    chimeGood: "ga.ogg",
+    chimeBad: "gb.ogg"
 };
 let btnRed = {
     btnId: 4, 
     element: $("#btn-red"),
     litClass: "button-red-lit",
-    chimeGood: "4a.ogg",
-    chimeBad: "4b.ogg"
+    chimeGood: "ra.ogg",
+    chimeBad: "rb.ogg"
 };
 
 
@@ -66,8 +66,8 @@ function sleep(ms) {
 
 function playSound(file){
     let speaker = new Audio();
-//    speaker.src = "../sounds/" + file;
-//    speaker.play();
+    speaker.src = "../assets/sounds/" + file;
+    speaker.play();
 }
 
 function onClickStartButton(){
