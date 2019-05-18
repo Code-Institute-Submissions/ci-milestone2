@@ -1,9 +1,29 @@
-/* Game buttons */
+
 body {
     background-color: black;
     color: white;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Bootstrap class overrides */
+.card {
+    margin-top: 1rem;
+    background-color: #202020;
+}
+.card-body{
+    padding: 0.5rem;
+}
+
+
+/* Game buttons */
 .game-button {
     min-height: 3rem;
     margin: 5px;

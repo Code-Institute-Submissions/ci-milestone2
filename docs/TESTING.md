@@ -94,3 +94,4 @@ Minor issues:
 - Score showing previous game's score on new game
     - Added a call to updateScores() on start function
 - The game rounds have a slight delay before playing for the first time, it would be good to add some preload method to the sounds
+    - Switching to the [Tones framework](https://github.com/bit101/tones/tree/gh-pages) could work for this
