@@ -30,7 +30,7 @@ a:hover {
 }
 
 .button-container {
-    padding: 1%;
+    padding: 0.5%;
 }
 
 
@@ -42,6 +42,7 @@ a:hover {
 
 .button-yellow {
     background-color: #ffc107;
+    border-radius: 100% 0 0 0;
 }
 .button-yellow-lit {
     background-color: #ffdd75;
@@ -49,6 +50,7 @@ a:hover {
 
 .button-blue {
     background-color: #0158b7;
+    border-radius: 0 100% 0 0;
 }
 .button-blue-lit {
     background-color: #7bbbff;
@@ -56,6 +58,7 @@ a:hover {
 
 .button-green {
     background-color: #009c00;
+    border-radius: 0 0 0 100%;
 }
 .button-green-lit {
     background-color: #39ff39;
@@ -63,6 +66,7 @@ a:hover {
 
 .button-red {
     background-color: #EE0000;
+    border-radius: 0 0 100% 0;
 }
 .button-red-lit {
     background-color: #ff4f4f;
