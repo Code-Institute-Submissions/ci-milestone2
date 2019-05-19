@@ -169,20 +169,21 @@ function onClickStartButton() {
 }
 
 function onClickDiffButton() {
-    switch (gameMode) {
-        case EASY:
-            gameMode = NORMAL;
-            $("#btn-diff").text("NORMAL");
-            break;
-        case NORMAL:
-            gameMode = HARD;
-            $("#btn-diff").text("HARD");
-            break;
-        case HARD:
-            gameMode = EASY;
-            $("#btn-diff").text("EASY");
+    if(readyState == OFF || readyState == OVER){    // To prevent difficulty change mid-game
+        switch (gameMode) {                         // Check which difficulty is current
+            case EASY:
+                gameMode = NORMAL;                  // Changes to next difficulty level
+                $("#btn-diff").text("NORMAL");      // Changes label on UI difficulty selector button
+                break;
+            case NORMAL:
+                gameMode = HARD;
+                $("#btn-diff").text("HARD");
+                break;
+            case HARD:
+                gameMode = EASY;
+                $("#btn-diff").text("EASY");
+        }   
     }
-
 }
 
 function onClickGameButton(gb) {
