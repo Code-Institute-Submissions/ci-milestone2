@@ -1,9 +1,15 @@
 /* global $, Tone */ //Stops C9 flagging a warning for '$ not defined'
 // ######### Defines ##########
+// Ready States
 const OFF = 0; // Game hasn't been started yet
 const UNREADY = 1; // Game has started but not ready for player input, e.g. currently playing pattern
 const READY = 2; // Game has started and ready for player input, e.g. players turn to repeat pattern
 const OVER = 3; // Game is finished
+
+// Difficulty
+const EASY = 1;
+const NORMAL = 2;
+const HARD = 3;
 
 
 // ########## Global Vars ##########
@@ -12,6 +18,7 @@ var hiscore = 0;
 var readyState = OFF;
 var pattern = [];
 var patPos = 0;
+var gameMode = EASY; 
 
 
 // ########## Game Button Objects ##########
@@ -158,6 +165,23 @@ function onClickGameButton(gb) {
             readyState = OVER;
         }
     }
+}
+
+function onClickDiffButton() {
+    switch (gameMode) {
+        case EASY:
+            gameMode = NORMAL;
+            $("#btn-diff").text("NORMAL");
+            break;
+        case NORMAL:
+            gameMode = HARD;
+            $("#btn-diff").text("HARD");
+            break;
+        case HARD:
+            gameMode = EASY;
+            $("#btn-diff").text("EASY");
+    }
+    
 }
 
 function timeout() {

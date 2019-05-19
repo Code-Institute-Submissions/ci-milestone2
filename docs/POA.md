@@ -44,7 +44,7 @@
     - Difficulty modes 
     - ~~Use a Web API framework to generate sounds to fix first play delay~~
     - Make UI better
-        - Make game buttons more centred and styled like a circle
+        - ~~Make game buttons more centred and styled like a circle~~
             - on mobile turn squared and vertically stacked
-        - Add difficulty button
+        - ~~Add difficulty button~~
         - Move start, score, highscore to below game buttons

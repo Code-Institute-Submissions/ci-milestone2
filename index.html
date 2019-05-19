@@ -21,13 +21,7 @@
                 <h1>SIMON</h1>
             </div>
         </div>
-
-        <!--Current Score Row-->
-        <div class="row">
-            <div class="col-sm-12">
-                <p>Current score: <span id="curr-score">--</span></p>
-            </div>
-        </div>
+        
         <!--Game Object-->
         <div class="row game-window">
             <div class="col-md-6 button-container">
@@ -43,18 +37,20 @@
                 <div class="game-button button-red" id="btn-red"></div>
             </div>
         </div>
-        <!--High Score Row-->
-        <div class="row">
-            <div class="col-sm-12">
-                <p>High score: <span id="high-score">--</span></p>
+
+       
+        <div class="row game-controls">
+            <div class="col-6 text-right">
+                <p><button id="btn-start" onclick="onClickStartButton()">START</button></p>
+                <p><button id="btn-diff" onclick="onClickDiffButton()">EASY</button></p>
+            </div>
+            <div class="col-6 score-box">
+                <p>CURR-SCORE: <span id="curr-score">--</span></p>
+                <p>HIGH-SCORE: <span id="high-score">--</span></p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <button id="btn-start" onclick="onClickStartButton()">START</button>
-                <button id="btn-difficulty" onclick="onClickDiffButton">DIFFICULTY</button>
-            </div>
-        </div>
+        
+        <!--Instructions Section-->
         <div class="row">
             <div class="col-sm-12">
                 <a data-toggle="collapse" href="#instructions">
@@ -81,6 +77,8 @@
                 </a>
             </div>
         </div>
+        
+        <!--About Section-->
         <div class="row">
             <div class="col-sm-12">
                 <a data-toggle="collapse" href="#about">
@@ -102,6 +100,7 @@
             </div>
         </div>
     </div>
+
 
     <!--Javascript Frameworks-->
     <!--JQuery-->

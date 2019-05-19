@@ -28,13 +28,19 @@ a:hover {
     height: 80vmin;
     margin: auto;
 }
-
 .button-container {
     padding: 0.5%;
 }
+.game-controls {
+    margin-top: 2rem;
+}
+.score-box {
+    line-height: 30px;
+    font-weight: bold;
+}
 
 
-/* Game buttons */
+/* Gameplay buttons */
 .game-button {
     height: 100%;
     background-color: gray;
@@ -75,3 +81,10 @@ a:hover {
 .button-unlit {
     background-color: darkgray;
 }
+
+/* Other Buttons */
+#btn-start, #btn-diff {
+    min-width: 83px;
+}
+
+/* TODO: Media query for gameplay buttons. Make yellow and red slightly different to empathise S shape */
