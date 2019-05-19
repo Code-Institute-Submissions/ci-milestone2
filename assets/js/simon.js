@@ -1,9 +1,9 @@
-/* global $ */          //Stops C9 flagging a warning for '$ not defined'
+/* global $, Tone */ //Stops C9 flagging a warning for '$ not defined'
 // ######### Defines ##########
-const OFF = 0;          // Game hasn't been started yet
-const UNREADY = 1;      // Game has started but not ready for player input, e.g. currently playing pattern
-const READY = 2;        // Game has started and ready for player input, e.g. players turn to repeat pattern
-const OVER = 3;         // Game is finished
+const OFF = 0; // Game hasn't been started yet
+const UNREADY = 1; // Game has started but not ready for player input, e.g. currently playing pattern
+const READY = 2; // Game has started and ready for player input, e.g. players turn to repeat pattern
+const OVER = 3; // Game is finished
 
 
 // ########## Global Vars ##########
@@ -16,63 +16,67 @@ var patPos = 0;
 
 // ########## Game Button Objects ##########
 let btnYellow = {
-    btnId: 1, 
+    btnId: 1,
     element: $("#btn-yellow"),
     litClass: "button-yellow-lit",
-    chimeGood: "ya.ogg",
-    chimeBad: "yb.ogg"
+    chimeGood: [138.591, "square", "+0.5"],
+    chimeBad: [69.296, "sawtooth", "+1.0"]
 };
 let btnBlue = {
-    btnId: 2, 
+    btnId: 2,
     element: $("#btn-blue"),
     litClass: "button-blue-lit",
-    chimeGood: "ba.ogg",
-    chimeBad: "bb.ogg"
+    chimeGood: [164.814, "square", "+0.5"],
+    chimeBad: [82.407, "sawtooth", "+1.0"]
 };
 let btnGreen = {
-    btnId: 3, 
+    btnId: 3,
     element: $("#btn-green"),
     litClass: "button-green-lit",
-    chimeGood: "ga.ogg",
-    chimeBad: "gb.ogg"
+    chimeGood: [82.407, "square", "+0.5"],
+    chimeBad: [41.203, "sawtooth", "+1.0"]
 };
 let btnRed = {
-    btnId: 4, 
+    btnId: 4,
     element: $("#btn-red"),
     litClass: "button-red-lit",
-    chimeGood: "ra.ogg",
-    chimeBad: "rb.ogg"
+    chimeGood: [220, "square", "+0.5"],
+    chimeBad: [110, "sawtooth", "+1.0"]
 };
 
 
 // ########## Binding click events to elements ##########
 
-$(btnYellow.element).click(function(){onClickGameButton(btnYellow)});
-$(btnBlue.element).click(function(){onClickGameButton(btnBlue)});
-$(btnGreen.element).click(function(){onClickGameButton(btnGreen)});
-$(btnRed.element).click(function(){onClickGameButton(btnRed)});
+$(btnYellow.element).click(function() { onClickGameButton(btnYellow) });
+$(btnBlue.element).click(function() { onClickGameButton(btnBlue) });
+$(btnGreen.element).click(function() { onClickGameButton(btnGreen) });
+$(btnRed.element).click(function() { onClickGameButton(btnRed) });
 
 
 // ########## Functions ##########
 // Returns random whole number between min and max params, inclusive of those numbers
 // Taken from w3schools (https://www.w3schools.com/js/js_random.asp)
 function rand(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) ) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function playSound(file){
-    let speaker = new Audio();
-    speaker.src = "../assets/sounds/" + file;
-    speaker.play();
+
+// Uses Tone.js to generate sounds
+// Pass array in as [freq, "wavetype", "duration"], e.g. [440,"sine","+0.5"]
+function playSound(params) {
+    var freq = params[0];
+    var type = params[1];
+    var duration = params[2];
+    var osc = new Tone.Oscillator(freq, type).toMaster().start().stop(duration);
 }
 
-function onClickStartButton(){
+function onClickStartButton() {
     readyState = UNREADY;
-    score = 0 ;
+    score = 0;
     updateScores();
     pattern = [];
     patPos = 0;
@@ -80,17 +84,17 @@ function onClickStartButton(){
     nextRound();
 }
 
-async function nextRound(){
+async function nextRound() {
     readyState = UNREADY;
-    pattern.push(rand(1,4));
+    pattern.push(rand(1, 4));
     patPos = 0;
     await sleep(2500);
     playPattern();
 }
 
-async function playPattern(){
+async function playPattern() {
     for (let i in pattern) {
-        switch(pattern[i]){
+        switch (pattern[i]) {
             case 1:
                 playButton(btnYellow, true);
                 break;
@@ -109,13 +113,14 @@ async function playPattern(){
     readyState = READY;
 }
 
-async function playButton(button, successful){
-    if(successful === true){
+async function playButton(button, successful) {
+    if (successful === true) {
         playSound(button.chimeGood);
         $(button.element).addClass(button.litClass);
         await sleep(1000);
         $(button.element).removeClass(button.litClass);
-    } else {
+    }
+    else {
         playSound(button.chimeBad);
         $(button.element).addClass("button-unlit");
         await sleep(1000);
@@ -123,31 +128,41 @@ async function playButton(button, successful){
     }
 }
 
-function updateScores(){
+function updateScores() {
     $("#curr-score").text(score);
-    if(score > hiscore){
+    if (score > hiscore) {
         hiscore = score;
         $("#high-score").text(hiscore);
     }
 }
 
-function onClickGameButton(gb){
+function onClickGameButton(gb) {
     if (readyState == OFF || readyState == OVER) {
         return onClickStartButton();
-    } else if (readyState == UNREADY) {
+    }
+    else if (readyState == UNREADY) {
         return;
-    } else if (readyState == READY){
+    }
+    else if (readyState == READY) {
         if (gb.btnId == pattern[patPos]) {
             playButton(gb, true);
             patPos++;
-            if (patPos >= pattern.length){
+            if (patPos >= pattern.length) {
                 score++;
                 updateScores();
                 nextRound();
             }
-        } else {
+        }
+        else {
             playButton(gb, false);
             readyState = OVER;
         }
     }
+}
+
+function timeout() {
+    playSound([41.203, "sawtooth", "+1"]);
+    playSound([82.407, "sawtooth", "+1"]);
+    playSound([69.296, "sawtooth", "+1"]);
+    playSound([110, "sawtooth", "+1"]);
 }

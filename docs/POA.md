@@ -11,10 +11,10 @@
         - ~high score~
         - ~yellow, blue, green, red game buttons~
         - ~start button~
-        - instructions area
-            - make collapsable
-        - history of simon area
-            - make collapsable
+        - ~instructions area~
+            - ~make collapsable~
+        - ~history of simon area~
+            - ~make collapsable~
 4. CSS
     - ~Button super class~
     - ~button classes~
@@ -37,8 +37,9 @@
     - ~Playtesting~
 8. Gameplay adjustments
     - ~Add delay to nextRound~
-    - Make GameOver more obvious
-        - Make button go dark on incorrect press
+    - ~Make GameOver more obvious~
+        - ~Make button go dark on incorrect press~
     - Make harder with timeouts causing game over
 9. Extended features
     - Difficulty modes 
+    - ~Use a Web API framework to generate sounds to fix first play delay~
