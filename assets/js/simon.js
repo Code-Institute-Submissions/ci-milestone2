@@ -20,6 +20,7 @@ var readyState = OFF;
 var pattern = [];
 var patPos = 0;
 var gameMode = EASY; 
+var timer;
 
 
 // ########## Game Button Objects ##########
@@ -130,10 +131,6 @@ async function nextRound() {
     pattern.push(rand(1, 4));
     patPos = 0;
     await sleep(2500);
-    playPattern();
-}
-
-async function playPattern() {
     for (let i in pattern) {
         switch (pattern[i]) {
             case 1:
