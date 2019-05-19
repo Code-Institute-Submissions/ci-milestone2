@@ -1,4 +1,5 @@
 /* global $, Tone */ //Stops C9 flagging a warning for '$ not defined'
+
 // ######### Defines ##########
 // Ready States
 const OFF = 0; // Game hasn't been started yet
@@ -61,16 +62,31 @@ $(btnRed.element).click(function() { onClickGameButton(btnRed) });
 
 
 // ########## Functions ##########
+// ---------- Helpers ----------
+
 // Returns random whole number between min and max params, inclusive of those numbers
 // Taken from w3schools (https://www.w3schools.com/js/js_random.asp)
 function rand(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// Used in a function to delay the next line calling. 
+// Calling function needs to be async, sleep needs to be called with 'await'
+// Taken from Stack Overflow (https://stackoverflow.com/a/39914235)
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// Updates the scores displayed on the UI
+function updateScores() {
+    $("#curr-score").text(score);
+    if (score > hiscore) {
+        hiscore = score;
+        $("#high-score").text(hiscore);
+    }
+}
+
+// ---------- Audio/Visual ----------
 
 // Uses Tone.js to generate sounds
 // Pass array in as [freq, "wavetype", "duration"], e.g. [440,"sine","+0.5"]
@@ -81,14 +97,32 @@ function playSound(params) {
     var osc = new Tone.Oscillator(freq, type).toMaster().start().stop(duration);
 }
 
-function onClickStartButton() {
-    readyState = UNREADY;
-    score = 0;
-    updateScores();
-    pattern = [];
-    patPos = 0;
-    $("#btn-start").text("Restart");
-    nextRound();
+
+// Lights the passed gameplay button up and plays good buzzer if successful param is true
+// Otherwise dims the button and plays the bad buzzer
+async function playButton(button, successful) {
+    if (successful === true) {
+        playSound(button.chimeGood);
+        $(button.element).addClass(button.litClass);
+        await sleep(1000);
+        $(button.element).removeClass(button.litClass);
+    }
+    else {
+        playSound(button.chimeBad);
+        $(button.element).addClass("button-unlit");
+        await sleep(1000);
+        $(button.element).removeClass("button-unlit");
+    }
+}
+
+// ---------- Logic ----------
+
+function timeout() {
+    readyState = OVER;
+    playButton(btnYellow, false);
+    playButton(btnBlue, false);
+    playButton(btnGreen, false);
+    playButton(btnRed, false);
 }
 
 async function nextRound() {
@@ -120,27 +154,33 @@ async function playPattern() {
     readyState = READY;
 }
 
-async function playButton(button, successful) {
-    if (successful === true) {
-        playSound(button.chimeGood);
-        $(button.element).addClass(button.litClass);
-        await sleep(1000);
-        $(button.element).removeClass(button.litClass);
-    }
-    else {
-        playSound(button.chimeBad);
-        $(button.element).addClass("button-unlit");
-        await sleep(1000);
-        $(button.element).removeClass("button-unlit");
-    }
+// ---------- onClick Funcs ----------
+
+function onClickStartButton() {
+    readyState = UNREADY;
+    score = 0;
+    updateScores();
+    pattern = [];
+    patPos = 0;
+    $("#btn-start").text("Restart");
+    nextRound();
 }
 
-function updateScores() {
-    $("#curr-score").text(score);
-    if (score > hiscore) {
-        hiscore = score;
-        $("#high-score").text(hiscore);
+function onClickDiffButton() {
+    switch (gameMode) {
+        case EASY:
+            gameMode = NORMAL;
+            $("#btn-diff").text("NORMAL");
+            break;
+        case NORMAL:
+            gameMode = HARD;
+            $("#btn-diff").text("HARD");
+            break;
+        case HARD:
+            gameMode = EASY;
+            $("#btn-diff").text("EASY");
     }
+    
 }
 
 function onClickGameButton(gb) {
@@ -165,29 +205,4 @@ function onClickGameButton(gb) {
             readyState = OVER;
         }
     }
-}
-
-function onClickDiffButton() {
-    switch (gameMode) {
-        case EASY:
-            gameMode = NORMAL;
-            $("#btn-diff").text("NORMAL");
-            break;
-        case NORMAL:
-            gameMode = HARD;
-            $("#btn-diff").text("HARD");
-            break;
-        case HARD:
-            gameMode = EASY;
-            $("#btn-diff").text("EASY");
-    }
-    
-}
-
-function timeout() {
-    readyState = OVER;
-    playButton(btnYellow, false);
-    playButton(btnBlue, false);
-    playButton(btnGreen, false);
-    playButton(btnRed, false);
 }
