@@ -1,0 +1,15 @@
+Name        Duration  Waveform  Freq
+Ya          0.5       Square    138.591
+Ba          0.5       Square    164.814
+Ga          0.5       Square    82.407
+Ra          0.5       Square    220
+
+Yb          1.0       Saw       69.296
+Bb          1.0       Saw       82.407
+Gb          1.0       Saw       41.203
+Rb          1.0       Saw       110
+
+Timeout     1.0       Saw       41.203, 82.407, 69.296, 110
+
+
+All at Amplitude 0.05

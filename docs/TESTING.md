@@ -68,6 +68,30 @@ Whilst building this project I tested as I developed, below are the notes of the
     3. Checks if ready then does below
         - Pass
     4. Checks if correct button is pressed by comparing btnID with value of current position in pattern array
+        - Pass 
     5. If successful, calls playButton, increments patPos up
-        3. Checks if there are no more remaining items in pattern array
-            1. If there isn't, then score is increased, updateScores is called, nextRound is called
+        - Pass
+    6. Checks if there are no more remaining items in pattern array. If there isn't, then score is increased, updateScores is called, nextRound is called
+        - Pass
+    7. If there are remaining items then function exits and waits for next button press
+        - Pass
+    8. If wrong button is pressed then calls playButton to play unsuccesful sound and sets readyState to Game Over
+        - Pass
+
+# Feature Complete: Playtesting
+Now that the core functions of game have been written and tested I can begin testing the gameplay.
+
+The first issue was that when the new round played its sequence the animation for the previous button press was still playing, this made it confusing as sometimes the first button of the pattern was the last button pressed, so they would overlap.
+- To get around this I added async to nextRound() and used the sleep() function to add a delay before playing the pattern, to give the previous animation time to finish. 
+
+The second issue is that Game Overs currently aren't very obvious if you have the game muted (or are deaf).
+- So as part of the Game Over sequence I made the button go dark (switch off) to make it look more obvious.
+
+Third issue is that the buttons can be clicked to start a new game, but during the game over state the buttons do nothing, which was counter intuitive and made it look like the game had froze
+- Changed the onClickGameButton() function to also call the start function if the game was in an OVER state
+
+Minor issues:
+- Score showing previous game's score on new game
+    - Added a call to updateScores() on start function
+- The game rounds have a slight delay before playing for the first time, it would be good to add some preload method to the sounds
+    - Switching to the [Tones framework](https://github.com/bit101/tones/tree/gh-pages) could work for this

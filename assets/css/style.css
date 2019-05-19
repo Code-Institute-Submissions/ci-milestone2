@@ -1,32 +1,90 @@
-/* Game buttons */
+/* Elements */
+body {
+    background-color: black;
+    color: white;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Bootstrap class overrides */
+.card {
+    margin-top: 1rem;
+    background-color: #131313;
+}
+.card-body{
+    padding: 0.5rem;
+}
+
+/* Game Containers */
+.game-window {
+    width: 80vmin;
+    height: 80vmin;
+    margin: auto;
+}
+.button-container {
+    padding: 0.5%;
+}
+.game-controls {
+    margin-top: 2rem;
+}
+.score-box {
+    line-height: 30px;
+    font-weight: bold;
+}
+
+
+/* Gameplay buttons */
 .game-button {
-    min-height: 3rem;
-    margin: 5px;
+    height: 100%;
     background-color: gray;
 }
 
 .button-yellow {
-    background-color: yellow;
+    background-color: #ffc107;
+    border-radius: 100% 0 0 0;
 }
 .button-yellow-lit {
-    background-color: aqua;
+    background-color: #ffdd75;
 }
 
 .button-blue {
-    background-color: blue;
+    background-color: #0158b7;
+    border-radius: 0 100% 0 0;
 }
 .button-blue-lit {
-    background-color: aqua;
+    background-color: #7bbbff;
 }
-.button-red {
-    background-color: red;
-}
-.button-red-lit {
-    background-color: aqua;
-}
+
 .button-green {
-    background-color: green;
+    background-color: #009c00;
+    border-radius: 0 0 0 100%;
 }
 .button-green-lit {
-    background-color: aqua;
+    background-color: #39ff39;
 }
+
+.button-red {
+    background-color: #EE0000;
+    border-radius: 0 0 100% 0;
+}
+.button-red-lit {
+    background-color: #ff4f4f;
+}
+
+.button-unlit {
+    background-color: darkgray;
+}
+
+/* Other Buttons */
+#btn-start, #btn-diff {
+    min-width: 83px;
+}
+
+/* TODO: Media query for gameplay buttons. Make yellow and red slightly different to empathise S shape */
