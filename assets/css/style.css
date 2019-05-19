@@ -24,15 +24,15 @@ a:hover {
 
 /* Game Containers */
 .game-window {
-    width: 80vmin;
-    height: 80vmin;
+    width: 60vmin;
+    height: 60vmin;
     margin: auto;
 }
 .button-container {
     padding: 0.5%;
 }
 .game-controls {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 .score-box {
     line-height: 30px;

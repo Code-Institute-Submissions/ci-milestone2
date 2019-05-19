@@ -19,7 +19,7 @@ var hiscore = 0;
 var readyState = OFF;
 var pattern = [];
 var patPos = 0;
-var gameMode = EASY; 
+var gameMode = EASY;
 var timer;
 
 
@@ -28,29 +28,29 @@ let btnYellow = {
     btnId: 1,
     element: $("#btn-yellow"),
     litClass: "button-yellow-lit",
-    chimeGood: [138.591, "square", "+0.5"],
-    chimeBad: [69.296, "sawtooth", "+1.0"]
+    chimeGood: [82.407, "square", "+0.5"],
+    chimeBad: [41.203, "sawtooth", "+1.0"]
 };
 let btnBlue = {
     btnId: 2,
     element: $("#btn-blue"),
     litClass: "button-blue-lit",
-    chimeGood: [164.814, "square", "+0.5"],
-    chimeBad: [82.407, "sawtooth", "+1.0"]
+    chimeGood: [220, "square", "+0.5"],
+    chimeBad: [110, "sawtooth", "+1.0"]
 };
 let btnGreen = {
     btnId: 3,
     element: $("#btn-green"),
     litClass: "button-green-lit",
-    chimeGood: [82.407, "square", "+0.5"],
-    chimeBad: [41.203, "sawtooth", "+1.0"]
+    chimeGood: [138.591, "square", "+0.5"],
+    chimeBad: [69.296, "sawtooth", "+1.0"]
 };
 let btnRed = {
     btnId: 4,
     element: $("#btn-red"),
     litClass: "button-red-lit",
-    chimeGood: [220, "square", "+0.5"],
-    chimeBad: [110, "sawtooth", "+1.0"]
+    chimeGood: [164.814, "square", "+0.5"],
+    chimeBad: [82.407, "sawtooth", "+1.0"]
 };
 
 
@@ -101,12 +101,14 @@ function playSound(params) {
 
 // Lights the passed gameplay button up and plays good buzzer if successful param is true
 // Otherwise dims the button and plays the bad buzzer
-async function playButton(button, successful) {
+async function playButton(button, successful, playerClick = false) {
     if (successful === true) {
         playSound(button.chimeGood);
-        $(button.element).addClass(button.litClass);
-        await sleep(1000);
-        $(button.element).removeClass(button.litClass);
+        if (gameMode != HARD || playerClick == true) {
+            $(button.element).addClass(button.litClass);
+            await sleep(1000);
+            $(button.element).removeClass(button.litClass)
+        };
     }
     else {
         playSound(button.chimeBad);
@@ -149,6 +151,9 @@ async function nextRound() {
         await sleep(1500);
     }
     readyState = READY;
+    if (gameMode != EASY) {
+        timer = setTimeout(timeout, 5000);
+    }
 }
 
 // ---------- onClick Funcs ----------
@@ -177,7 +182,7 @@ function onClickDiffButton() {
             gameMode = EASY;
             $("#btn-diff").text("EASY");
     }
-    
+
 }
 
 function onClickGameButton(gb) {
@@ -188,13 +193,16 @@ function onClickGameButton(gb) {
         return;
     }
     else if (readyState == READY) {
+        clearTimeout(timer);
         if (gb.btnId == pattern[patPos]) {
-            playButton(gb, true);
+            playButton(gb, true, true);
             patPos++;
             if (patPos >= pattern.length) {
                 score++;
                 updateScores();
                 nextRound();
+            } else if (gameMode != EASY) {
+                timer = setTimeout(timeout, 3000);
             }
         }
         else {
