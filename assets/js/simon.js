@@ -145,12 +145,12 @@ function timeout() {
 // Called at start of new game or when player has exhausted pattern array successfully
 // Picks a random id num and adds to pattern array then plays pattern array
 async function nextRound() {
-    readyState = UNREADY;       // Set game to Unready so player can't interact
-    pattern.push(rand(1, 4));   // select random id num to add to pattern array
+    readyState = UNREADY; // Set game to Unready so player can't interact
+    pattern.push(rand(1, 4)); // select random id num to add to pattern array
     patPos = 0;
-    await sleep(2500);  // Gives player a chance to get ready after starting, gives buttons time to turn back off
+    await sleep(2500); // Gives player a chance to get ready after starting, gives buttons time to turn back off
     // Plays pattern array
-    for (let i in pattern) { 
+    for (let i in pattern) {
         switch (pattern[i]) {
             case 1:
                 playButton(btnYellow, true);
@@ -165,9 +165,9 @@ async function nextRound() {
                 playButton(btnRed, true);
                 break;
         }
-        await sleep(1500);  // Stops buttons playing at the same time, including the same button over itself
+        await sleep(1500); // Stops buttons playing at the same time, including the same button over itself
     }
-    readyState = READY;     // Releases game into ready state so player can interact again
+    readyState = READY; // Releases game into ready state so player can interact again
     // Only game difficulty modes other than EASY have a timeout
     if (gameMode != EASY) {
         timer = setTimeout(timeout, 5000);
@@ -184,8 +184,8 @@ function onClickStartButton() {
     updateScores(); // To clear the current displayed score
     pattern = [];
     patPos = 0;
-    $("#btn-start").text("Restart");    // Changes label on UI start button
-    nextRound();    // Starts the first round
+    $("#btn-start").text("Restart"); // Changes label on UI start button
+    nextRound(); // Starts the first round
 }
 
 // Called when player clicks UI difficulty selector button
@@ -220,16 +220,16 @@ function onClickGameButton(gb) {
         return;
     }
     else if (readyState == READY) {
-        clearTimeout(timer);    // Clears the timeout timer
+        clearTimeout(timer); // Clears the timeout timer
         // Checks correct button is pressed compared to pattern array position
         if (gb.btnId == pattern[patPos]) {
-            playButton(gb, true, true); 
+            playButton(gb, true, true);
             patPos++;
             // Checks if pattern array has no remaining items
             if (patPos >= pattern.length) {
-                score++;    // Player gains a point after completing each round
+                score++; // Player gains a point after completing each round
                 updateScores(); // Render score, and high score if appl, on UI fields
-                nextRound();    // Starts next round
+                nextRound(); // Starts next round
             }
             // If items in array remaining, set timeout timer
             // Only game difficulty modes other than EASY have a timeout
@@ -239,8 +239,8 @@ function onClickGameButton(gb) {
         }
         // Handles player pressing the wrong button
         else {
-            playButton(gb, false);  // Dims button, plays bad buzzer
-            readyState = OVER;  // Ends the game
+            playButton(gb, false); // Dims button, plays bad buzzer
+            readyState = OVER; // Ends the game
         }
     }
 }
