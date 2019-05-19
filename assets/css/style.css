@@ -1,4 +1,4 @@
-
+/* Elements */
 body {
     background-color: black;
     color: white;
@@ -16,45 +16,58 @@ a:hover {
 /* Bootstrap class overrides */
 .card {
     margin-top: 1rem;
-    background-color: #202020;
+    background-color: #131313;
 }
 .card-body{
     padding: 0.5rem;
 }
 
+/* Game Containers */
+.game-window {
+    width: 80vmin;
+    height: 80vmin;
+    margin: auto;
+}
+
+.button-container {
+    padding: 1%;
+}
+
 
 /* Game buttons */
 .game-button {
-    min-height: 3rem;
-    margin: 5px;
+    height: 100%;
     background-color: gray;
 }
 
 .button-yellow {
-    background-color: yellow;
+    background-color: #ffc107;
 }
 .button-yellow-lit {
-    background-color: aqua;
+    background-color: #ffdd75;
 }
 
 .button-blue {
-    background-color: blue;
+    background-color: #0158b7;
 }
 .button-blue-lit {
-    background-color: aqua;
+    background-color: #7bbbff;
 }
-.button-red {
-    background-color: red;
-}
-.button-red-lit {
-    background-color: aqua;
-}
+
 .button-green {
-    background-color: green;
+    background-color: #009c00;
 }
 .button-green-lit {
-    background-color: aqua;
+    background-color: #39ff39;
 }
+
+.button-red {
+    background-color: #EE0000;
+}
+.button-red-lit {
+    background-color: #ff4f4f;
+}
+
 .button-unlit {
     background-color: darkgray;
 }
