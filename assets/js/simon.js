@@ -161,8 +161,9 @@ function onClickGameButton(gb) {
 }
 
 function timeout() {
-    playSound([41.203, "sawtooth", "+1"]);
-    playSound([82.407, "sawtooth", "+1"]);
-    playSound([69.296, "sawtooth", "+1"]);
-    playSound([110, "sawtooth", "+1"]);
+    readyState = OVER;
+    playButton(btnYellow, false);
+    playButton(btnBlue, false);
+    playButton(btnGreen, false);
+    playButton(btnRed, false);
 }
