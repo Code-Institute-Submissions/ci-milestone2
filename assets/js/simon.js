@@ -106,7 +106,9 @@ function playSound(params) {
     let freq = params[0];
     let type = params[1];
     let duration = params[2];
-    let osc = new Tone.Oscillator(freq, type).toMaster().start().stop(duration);
+    let osc = new Tone.Oscillator(freq, type);
+    osc.volume.value = -22;     // Sets the volume in dB, otherwise it is really really loud 
+    osc.toMaster().start().stop(duration);
 }
 
 
@@ -118,14 +120,14 @@ async function playButton(button, successful, playerClick = false) {
         // Does not light buttons on HARD mode, unless called as a player click
         if (gameMode != HARD || playerClick == true) {
             $(button.element).addClass(button.litClass);
-            await sleep(1000);
+            await sleep(500);
             $(button.element).removeClass(button.litClass);
         };
     }
     else {
         playSound(button.chimeBad);
         $(button.element).addClass("button-unlit");
-        await sleep(1000);
+        await sleep(500);
         $(button.element).removeClass("button-unlit");
     }
 }
@@ -148,7 +150,7 @@ async function nextRound() {
     readyState = UNREADY; // Set game to Unready so player can't interact
     pattern.push(rand(1, 4)); // select random id num to add to pattern array
     patPos = 0;
-    await sleep(2500); // Gives player a chance to get ready after starting, gives buttons time to turn back off
+    await sleep(2000); // Gives player a chance to get ready after starting, gives buttons time to turn back off
     // Plays pattern array
     for (let i in pattern) {
         switch (pattern[i]) {
@@ -165,12 +167,12 @@ async function nextRound() {
                 playButton(btnRed, true);
                 break;
         }
-        await sleep(1500); // Stops buttons playing at the same time, including the same button over itself
+        await sleep(1000); // Stops buttons playing at the same time, including the same button over itself
     }
     readyState = READY; // Releases game into ready state so player can interact again
     // Only game difficulty modes other than EASY have a timeout
     if (gameMode != EASY) {
-        timer = setTimeout(timeout, 5000);
+        timer = setTimeout(timeout, 4000);  // Gives a bit of extra time at new round compared between button clicks
     }
 }
 
