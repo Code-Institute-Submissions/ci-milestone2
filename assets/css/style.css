@@ -26,6 +26,11 @@ a:hover {
     padding: 0.5rem;
 }
 
+.inner-link {
+    position:relative;
+    z-index: 1;
+}
+
 /* Game Containers */
 
 .game-window {
