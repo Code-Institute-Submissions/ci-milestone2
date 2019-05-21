@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=VT323&display=swap');
 /* Elements */
 
 body {
     background-color: black;
     color: white;
+    font-family: consolas, monospace;
 }
 
 a {
@@ -14,6 +16,16 @@ a:hover {
     text-decoration: none;
     color: inherit;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'VT323', monospace;
+}
+
 
 /* Bootstrap class overrides */
 
@@ -27,7 +39,7 @@ a:hover {
 }
 
 .inner-link {
-    position:relative;
+    position: relative;
     z-index: 1;
 }
 
@@ -71,7 +83,7 @@ a:hover {
 
 .button-blue {
     background-color: #0158b7;
-    border-radius: 0 100% 0 0;
+    border-radius: 0 100% 0% 0;
 }
 
 .button-blue-lit {
@@ -107,4 +119,17 @@ a:hover {
     min-width: 83px;
 }
 
-/* TODO: Media query for gameplay buttons. Make yellow and red slightly different to empathise S shape */
+@media(max-width: 767px) {
+    .game-window {
+        width: 80vmin;
+        height: 80vmin;
+        margin: auto;
+    }
+    
+    .button-yellow {
+        border-radius: 100% 15% 30% 0;
+    }
+    .button-red {
+        border-radius: 25% 0 100% 15%;
+    }
+}

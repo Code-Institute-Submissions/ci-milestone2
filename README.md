@@ -56,7 +56,7 @@ For some/all of your features, you may choose to reference the specific project 
 In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
 
 ### Features Left to Implement
-- Another feature idea
+- A warning about the site not being compatible with IE11. Due to using Tones.js the game doesn't work at all on IE11, as IE11 is no longer being updated by Microsoft. Currently the game simply does not work at all, this is poor UX as the user may think the game itself is broke. It would be much better to have a warning pop up saying the game is not compatible with IE11 and that they should switch to a modern supported browser.
 
 ## Technologies Used
 
