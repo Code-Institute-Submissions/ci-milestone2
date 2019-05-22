@@ -64,10 +64,10 @@ let btnRed = {
 // ########## Binding click events to elements ##########
 // Adds a click function to the gameplay buttons
 // This function calls onClickGameButton with reference to the relevant game button object
-$(btnYellow.element).click(function() { onClickGameButton(btnYellow) });
-$(btnBlue.element).click(function() { onClickGameButton(btnBlue) });
-$(btnGreen.element).click(function() { onClickGameButton(btnGreen) });
-$(btnRed.element).click(function() { onClickGameButton(btnRed) });
+$(btnYellow.element).click(function() { onClickGameButton(btnYellow); });
+$(btnBlue.element).click(function() { onClickGameButton(btnBlue); });
+$(btnGreen.element).click(function() { onClickGameButton(btnGreen); });
+$(btnRed.element).click(function() { onClickGameButton(btnRed); });
 
 
 // ########## Functions ##########
@@ -122,7 +122,7 @@ async function playButton(button, successful, playerClick = false) {
             $(button.element).addClass(button.litClass);
             await sleep(500);
             $(button.element).removeClass(button.litClass);
-        };
+        }
     }
     else {
         playSound(button.chimeBad);
@@ -152,7 +152,7 @@ async function nextRound() {
     patPos = 0;
     await sleep(2000); // Gives player a chance to get ready after starting, gives buttons time to turn back off
     // Plays pattern array
-    for (let i in pattern) {
+    for (var i = 0; i < pattern.length; i++) {
         switch (pattern[i]) {
             case 1:
                 playButton(btnYellow, true);
