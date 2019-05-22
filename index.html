@@ -15,101 +15,105 @@
 
 <body>
     <div class="container">
-        <!--Page Title Row-->
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <h1>SIMON</h1>
+        <!--Game Section-->
+        <section id="game-section">
+            <!--Page Title Row-->
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h1>SIMON</h1>
+                </div>
             </div>
-        </div>
 
-        <div class="row no-gutters">
-            <div class="col-12 col-sm-6 col-md-12">
-                <!--Game Object-->
-                <div class="row game-window">
-                    <div class="col-md-6 button-container">
-                        <div class="game-button button-yellow" id="btn-yellow"></div>
+            <div class="row no-gutters">
+                <div class="col-12 col-sm-6 col-md-12">
+                    <!--Game Object-->
+                    <div class="row game-window">
+                        <div class="col-md-6 button-container">
+                            <div class="game-button button-yellow" id="btn-yellow"></div>
+                        </div>
+                        <div class="col-md-6 button-container">
+                            <div class="game-button button-blue" id="btn-blue"></div>
+                        </div>
+                        <div class="col-md-6 button-container">
+                            <div class="game-button button-green" id="btn-green"></div>
+                        </div>
+                        <div class="col-md-6 button-container">
+                            <div class="game-button button-red" id="btn-red"></div>
+                        </div>
                     </div>
-                    <div class="col-md-6 button-container">
-                        <div class="game-button button-blue" id="btn-blue"></div>
-                    </div>
-                    <div class="col-md-6 button-container">
-                        <div class="game-button button-green" id="btn-green"></div>
-                    </div>
-                    <div class="col-md-6 button-container">
-                        <div class="game-button button-red" id="btn-red"></div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-12">
+                    <!--Controls and Score Box-->
+                    <div class="row game-controls">
+                        <div class="col-6 col-sm-12 col-md-6 text-right text-sm-center text-md-right">
+                            <p><button id="btn-start" onclick="onClickStartButton()">START</button></p>
+                            <p><button id="btn-diff" onclick="onClickDiffButton()">EASY</button></p>
+                        </div>
+                        <div class="col-6 col-sm-12 col-md-6 text-left text-sm-center text-md-left score-box">
+                            <p>CURR-SCORE: <span id="curr-score">--</span></p>
+                            <p>HIGH-SCORE: <span id="high-score">--</span></p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-12">
-                <!--Controls and Score Box-->
-                <div class="row game-controls">
-                    <div class="col-6 col-sm-12 col-md-6 text-right text-sm-center text-md-right">
-                        <p><button id="btn-start" onclick="onClickStartButton()">START</button></p>
-                        <p><button id="btn-diff" onclick="onClickDiffButton()">EASY</button></p>
-                    </div>
-                    <div class="col-6 col-sm-12 col-md-6 text-left text-sm-center text-md-left score-box">
-                        <p>CURR-SCORE: <span id="curr-score">--</span></p>
-                        <p>HIGH-SCORE: <span id="high-score">--</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
+        </section>
 
 
         <!--Instructions Section-->
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card card-body">
-                    <a data-toggle="collapse" href="#instructions">
-                        <h4 class="card-title">How To Play</h4>
-                    </a>
-                    <div class="collapse card-text" id="instructions">
-                        <ol>
-                            <li>Select your game mode (see below for more info)</li>
-                            <li>Press 'Start' or any button to start</li>
-                            <li>Simon will light one of the buttons and play a sound</li>
-                            <li>Now it is your turn, press the same button</li>
-                            <li>That was easy! Simon will again play that button and another</li>
-                            <li>Press these two buttons in the order Simon showed you</li>
-                            <li>Now you've got the idea! Each round Simon will play the pattern, increasing by one each time</li>
-                        </ol>
-                        <h5 class="card-subtitle text-muted">Game Modes: </h5>
-                        <ul>
-                            <li>Easy: No time limits for pressing the buttons</li>
-                            <li>Normal: You have three seconds to press the next button in the pattern</li>
-                            <li>Hard: Simon plays the pattern with sound only. A mode for the more musically inclined.</li>
-                        </ul>
+        <section>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-body">
+                        <a data-toggle="collapse" href="#instructions">
+                            <h4 class="card-title">How To Play</h4>
+                        </a>
+                        <div class="collapse card-text" id="instructions">
+                            <ol>
+                                <li>Select your game mode (see below for more info)</li>
+                                <li>Press 'Start' or any button to start</li>
+                                <li>Simon will light one of the buttons and play a sound</li>
+                                <li>Now it is your turn, press the same button</li>
+                                <li>That was easy! Simon will again play that button and another</li>
+                                <li>Press these two buttons in the order Simon showed you</li>
+                                <li>Now you've got the idea! Each round Simon will play the pattern, increasing by one each time</li>
+                            </ol>
+                            <h5 class="card-subtitle text-muted">Game Modes: </h5>
+                            <ul>
+                                <li>Easy: No time limits for pressing the buttons</li>
+                                <li>Normal: You have three seconds to press the next button in the pattern</li>
+                                <li>Hard: Simon plays the pattern with sound only. A mode for the more musically inclined.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!--About Section-->
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card card-body">
-                    <a class="stretched-link" data-toggle="collapse" href="#about">
-                        <h4 class="card-title">About Simon</h4>
-                    </a>
-                    <div class="collapse card-text" id="about">
-                        <p>
-                            Simon is an electronic game of memory skill invented by Ralph H. Baer and Howard J. Morrison, working for toy design firm Marvin Glass and Associates, with software programming by Lenny Cope. <br /> Much of the assembly language
-                            was written by Charles Kapps, who taught computer science at Temple University and also wrote one of the first books on the theory of computer programming.</p>
-                        <p>The device creates a series of tones and lights and requires a user to repeat the sequence. If the user succeeds, the series becomes progressively longer and more complex. <br /> Once the user fails or the time limit runs out,
-                            the game is over. </p>
-                        <p>The original version was manufactured and distributed by Milton Bradley and later by Hasbro after it took over Milton Bradley. <br /> Simon was launched in 1978 at Studio 54 in New York City and was an immediate success, becoming
-                            a pop culture symbol of the 1970s and 1980s.
-                        </p>
-                        <p>
-                            <a class="inner-link" href="https://en.wikipedia.org/wiki/Simon_(game)" target="_blank"><i>Click here to read more on Wikipedia</i></a>
-                        </p>
+        <article>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-body">
+                        <a class="stretched-link" data-toggle="collapse" href="#about">
+                            <h4 class="card-title">About Simon</h4>
+                        </a>
+                        <div class="collapse card-text" id="about">
+                            <p>
+                                Simon is an electronic game of memory skill invented by Ralph H. Baer and Howard J. Morrison, working for toy design firm Marvin Glass and Associates, with software programming by Lenny Cope. <br /> Much of the assembly
+                                language was written by Charles Kapps, who taught computer science at Temple University and also wrote one of the first books on the theory of computer programming.</p>
+                            <p>The device creates a series of tones and lights and requires a user to repeat the sequence. If the user succeeds, the series becomes progressively longer and more complex. <br /> Once the user fails or the time limit runs out,
+                                the game is over. </p>
+                            <p>The original version was manufactured and distributed by Milton Bradley and later by Hasbro after it took over Milton Bradley. <br /> Simon was launched in 1978 at Studio 54 in New York City and was an immediate success, becoming
+                                a pop culture symbol of the 1970s and 1980s.
+                            </p>
+                            <p>
+                                <a class="inner-link" href="https://en.wikipedia.org/wiki/Simon_(game)" target="_blank"><i>Click here to read more on Wikipedia</i></a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </article>
     </div>
 
 
