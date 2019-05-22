@@ -22,33 +22,42 @@
             </div>
         </div>
 
-        <!--Game Object-->
-        <div class="row game-window">
-            <div class="col-md-6 button-container">
-                <div class="game-button button-yellow" id="btn-yellow"></div>
+        <div class="row no-gutters">
+            <div class="col-12 col-sm-6 col-md-12">
+                <!--Game Object-->
+                <div class="row game-window">
+                    <div class="col-md-6 button-container">
+                        <div class="game-button button-yellow" id="btn-yellow"></div>
+                    </div>
+                    <div class="col-md-6 button-container">
+                        <div class="game-button button-blue" id="btn-blue"></div>
+                    </div>
+                    <div class="col-md-6 button-container">
+                        <div class="game-button button-green" id="btn-green"></div>
+                    </div>
+                    <div class="col-md-6 button-container">
+                        <div class="game-button button-red" id="btn-red"></div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 button-container">
-                <div class="game-button button-blue" id="btn-blue"></div>
-            </div>
-            <div class="col-md-6 button-container">
-                <div class="game-button button-green" id="btn-green"></div>
-            </div>
-            <div class="col-md-6 button-container">
-                <div class="game-button button-red" id="btn-red"></div>
+            <div class="col-12 col-sm-6 col-md-12">
+                <!--Controls and Score Box-->
+                <div class="row game-controls">
+                    <div class="col-6 col-sm-12 col-md-6 text-right text-sm-center text-md-right">
+                        <p><button id="btn-start" onclick="onClickStartButton()">START</button></p>
+                        <p><button id="btn-diff" onclick="onClickDiffButton()">EASY</button></p>
+                    </div>
+                    <div class="col-6 col-sm-12 col-md-6 text-left text-sm-center text-md-left score-box">
+                        <p>CURR-SCORE: <span id="curr-score">--</span></p>
+                        <p>HIGH-SCORE: <span id="high-score">--</span></p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!--Controls and Score Box-->
-        <div class="row game-controls">
-            <div class="col-6 text-right">
-                <p><button id="btn-start" onclick="onClickStartButton()">START</button></p>
-                <p><button id="btn-diff" onclick="onClickDiffButton()">EASY</button></p>
-            </div>
-            <div class="col-6 score-box">
-                <p>CURR-SCORE: <span id="curr-score">--</span></p>
-                <p>HIGH-SCORE: <span id="high-score">--</span></p>
-            </div>
-        </div>
+
+
+
 
         <!--Instructions Section-->
         <div class="row">

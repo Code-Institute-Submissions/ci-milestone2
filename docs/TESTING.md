@@ -95,3 +95,30 @@ Minor issues:
     - Added a call to updateScores() on start function
 - The game rounds have a slight delay before playing for the first time, it would be good to add some preload method to the sounds
     - Switching to the [Tones.js framework](https://tonejs.github.io) could work for this
+    - Switched to Tones.js. Had to change the Game Button object's chime properties to the specified audio format parameters instead of links to audio files, which is nice as the sounds can be tweaked much easier than the prerendered Audiacity ones. As the audio tones are produced via the browser itself this has eliminated all issues with the delay of downloading the sounds on first play.
+    - Tone.js is unfortunetly not compatible with IE11 but that is an acceptable loss (it is an old out of date browser that people need to stop using)
+
+# Defensive programming
+There wasn't much the player could do that could break the game, aside from mashing the buttons at the wrong time.  
+I had already factored this in to my logic design before coding the game by having a readyState variable that would be set at certain times to prevent the player input registering.
+
+After coding the difficulty settings I realised the player could change the difficulty level midgame (as I'd done it myself a few times), but was able to prevent this by using the same readyState system from above.
+
+# Responsiveness
+By using the Bootstrap framework the UI is responsive. The layout of the site however is simple enough that I felt it was only suitable to make a difference between mobile screens and desktop.  
+
+Initially I had only done a breakpoint between XS (less than 576px) and MD (768px or greater) screens, with the game's main buttons becoming vertically stacked on the XS size screens - the Start/Difficulty/Scores area ('Control Box') were kept below the game area.  
+This looked fine when the phone was held vertically but when the phone was held horizontally the Control Box area barely fit on the screen and there was a lot of wasted space at the sides.  
+To fix this I added another Row-Col pair and put the Game Window and Control Box elements as a child of this. Then I changed the breakpoints so that on mobile-horizontal screens the Game Window would be shifted left and the Control Box would be brought up and placed to the right of the Game Window to utilise space better.
+
+In order to give the player a bit more space for their thumbs on mobile devices I had the game window morph from the classic Simon 'circle of four quarters' layout to a vertically stacked layout.  
+Originally I was just going to make the buttons morph into plain rectangles, but as an interesting quirk I noticed that the four quarters when stacked and stretched formed the shape of an S. I decided to embrace this quirk as a feature and only changed the top and bottom buttons to be a bit more rounded and keep the 'S' for Simon. 
+
+
+# Browser compatibility
+- IE11 - not compatible due to using Tones.js
+- Chrome - dev browser, works
+- Firefox - works fine
+- Safari - did not have access to a mac to test with myself, asked some fellow students to test it and they said it worked
+- Edge - works fine
+- Opera - works fine
