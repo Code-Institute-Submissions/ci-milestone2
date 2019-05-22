@@ -113,6 +113,8 @@ Additionally I have a included a [file](docs/sounds-info.txt) with a specificati
 	- Validates HTML markup files. Checks for errors in syntax such as unclosed tags or unneeded close tags.
 - [W3C Jigsaw](https://jigsaw.w3.org/css-validator/)
 	- Validates CSS files for syntax errors.
+- [JSHint](https://jshint.com/)
+    - A JavaScript linter for checking errors in the syntax, etc. 
 
 
 ## Testing
