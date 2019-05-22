@@ -39,15 +39,15 @@
     - ~~Add delay to nextRound~~
     - ~~Make GameOver more obvious~~
         - ~~Make button go dark on incorrect press~~
-    - Make harder with timeouts causing game over
+    - ~~Make harder with timeouts causing game over~~
 9. Extended features
     - Difficulty modes 
-        - Easy: As is
-        - Normal: Schedule call to timeout() if player doesn't click fast enough
-        - Hard: Make playButton() not play 
+        - ~~Easy: As is~~
+        - ~~Normal: Schedule call to timeout() if player doesn't click fast enough~~
+        - ~~Hard: Make playButton() not play ~~
     - ~~Use a Web API framework to generate sounds to fix first play delay~~
     - Make UI better
         - ~~Make game buttons more centred and styled like a circle~~
-            - on mobile make S shape and vertically stacked
+            - ~~on mobile make S shape and vertically stacked~~
         - ~~Add difficulty button~~
         - ~~Move start, score, highscore to below game buttons~~

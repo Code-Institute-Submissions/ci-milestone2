@@ -1,3 +1,4 @@
+# Basic layout of logic
 1. User presses any of the four buttons to start
 2. App checks ready state
     1. If game hasn't started, do initial things
@@ -20,6 +21,9 @@
             1. Play unhappy chime
             2. Set high score if current score higher than previous high score
             3. Set ready state to pregame 
+ 
+
+# JS Psudeocode
             
 start()
     READYSTATE = UNREADY

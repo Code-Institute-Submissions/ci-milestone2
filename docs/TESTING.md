@@ -125,6 +125,6 @@ Originally I was just going to make the buttons morph into plain rectangles, but
 - IE11 - not compatible due to using Tones.js
 - Chrome - dev browser, works
 - Firefox - works fine
-- Safari - did not have access to a mac to test with myself, asked some fellow students to test it and they said it worked
+- Safari - did not have access to a mac to test with myself, asked some fellow students to test it and they said it worked aside from the first sound of the first game not playing
 - Edge - works fine
 - Opera - works fine
