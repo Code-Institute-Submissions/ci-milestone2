@@ -10,7 +10,7 @@ Whilst building this project I tested as I developed, below are the notes of the
     1. At first I attached a click handler to the button's element with this code: '$(btnGreen.element).click(onClickGameButton(btnGreen));'
         - This caused an odd bug which caused the onClickGameButton function to fire off on all buttons as soon as the page loaded
         - After some reading I found this was due to calling the function with a parameter, this caused the code to call the function straight away when adding the event handler.
-    2. I changed the function to be an annonymus function which would then call the wanted function: '$(btnBlue.element).click(function(){onClickGameButton(btnBlue)});'
+    2. I changed the function to be an anonymous function which would then call the wanted function: '$(btnBlue.element).click(function(){onClickGameButton(btnBlue)});'
         - This worked as expected; the function did not call until the button was clicked, and the test code in the function executed correctly upon clicking the button
 3. Test Start button works
     1. It didn't do anything
@@ -75,39 +75,45 @@ Whilst building this project I tested as I developed, below are the notes of the
         - Pass
     7. If there are remaining items then function exits and waits for next button press
         - Pass
-    8. If wrong button is pressed then calls playButton to play unsuccesful sound and sets readyState to Game Over
+    8. If wrong button is pressed then calls playButton to play unsuccessful sound and sets readyState to Game Over
         - Pass
 
 # Feature Complete: Playtesting
 Now that the core functions of game have been written and tested I can begin testing the gameplay.
 
 The first issue was that when the new round played its sequence the animation for the previous button press was still playing, this made it confusing as sometimes the first button of the pattern was the last button pressed, so they would overlap.
+
 - To get around this I added async to nextRound() and used the sleep() function to add a delay before playing the pattern, to give the previous animation time to finish. 
 
 The second issue is that Game Overs currently aren't very obvious if you have the game muted (or are deaf).
+
 - So as part of the Game Over sequence I made the button go dark (switch off) to make it look more obvious.
 
 Third issue is that the buttons can be clicked to start a new game, but during the game over state the buttons do nothing, which was counter intuitive and made it look like the game had froze
+
 - Changed the onClickGameButton() function to also call the start function if the game was in an OVER state
 
-Minor issues:
+
+Minor issues: 
+
 - Score showing previous game's score on new game
     - Added a call to updateScores() on start function
 - The game rounds have a slight delay before playing for the first time, it would be good to add some preload method to the sounds
     - Switching to the [Tones.js framework](https://tonejs.github.io) could work for this
-    - Switched to Tones.js. Had to change the Game Button object's chime properties to the specified audio format parameters instead of links to audio files, which is nice as the sounds can be tweaked much easier than the prerendered Audiacity ones. As the audio tones are produced via the browser itself this has eliminated all issues with the delay of downloading the sounds on first play.
-    - Tone.js is unfortunetly not compatible with IE11 but that is an acceptable loss (it is an old out of date browser that people need to stop using)
+    - Switched to Tones.js. Had to change the Game Button object's chime properties to the specified audio format parameters instead of links to audio files, which is nice as the sounds can be tweaked much easier than the pre-rendered Audacity ones. As the audio tones are produced via the browser itself this has eliminated all issues with the delay of downloading the sounds on first play.
+    - Tone.js is unfortunately not compatible with IE11 but that is an acceptable loss (it is an old out of date browser that people need to stop using)
 
 # Defensive programming
 There wasn't much the player could do that could break the game, aside from mashing the buttons at the wrong time.  
 I had already factored this in to my logic design before coding the game by having a readyState variable that would be set at certain times to prevent the player input registering.
 
-After coding the difficulty settings I realised the player could change the difficulty level midgame (as I'd done it myself a few times), but was able to prevent this by using the same readyState system from above.
+After coding the difficulty settings I realised the player could change the difficulty level mid-game (as I'd done it myself a few times), but was able to prevent this by using the same readyState system from above.
 
 # Responsiveness
 By using the Bootstrap framework the UI is responsive. The layout of the site however is simple enough that I felt it was only suitable to make a difference between mobile screens and desktop.  
 
 Initially I had only done a breakpoint between XS (less than 576px) and MD (768px or greater) screens, with the game's main buttons becoming vertically stacked on the XS size screens - the Start/Difficulty/Scores area ('Control Box') were kept below the game area.  
+
 This looked fine when the phone was held vertically but when the phone was held horizontally the Control Box area barely fit on the screen and there was a lot of wasted space at the sides.  
 To fix this I added another Row-Col pair and put the Game Window and Control Box elements as a child of this. Then I changed the breakpoints so that on mobile-horizontal screens the Game Window would be shifted left and the Control Box would be brought up and placed to the right of the Game Window to utilise space better.
 
