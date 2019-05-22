@@ -1,4 +1,5 @@
 # Build Notes
+
 Whilst building this project I tested as I developed, below are the notes of the tests I performed and their results
 
 1. Test if JQuery can work by referencing the element in the Object declarations
@@ -78,7 +79,9 @@ Whilst building this project I tested as I developed, below are the notes of the
     8. If wrong button is pressed then calls playButton to play unsuccessful sound and sets readyState to Game Over
         - Pass
 
+
 # Feature Complete: Playtesting
+
 Now that the core functions of game have been written and tested I can begin testing the gameplay.
 
 The first issue was that when the new round played its sequence the animation for the previous button press was still playing, this made it confusing as sometimes the first button of the pattern was the last button pressed, so they would overlap.
@@ -103,13 +106,17 @@ Minor issues:
     - Switched to Tones.js. Had to change the Game Button object's chime properties to the specified audio format parameters instead of links to audio files, which is nice as the sounds can be tweaked much easier than the pre-rendered Audacity ones. As the audio tones are produced via the browser itself this has eliminated all issues with the delay of downloading the sounds on first play.
     - Tone.js is unfortunately not compatible with IE11 but that is an acceptable loss (it is an old out of date browser that people need to stop using)
 
+
 # Defensive programming
+
 There wasn't much the player could do that could break the game, aside from mashing the buttons at the wrong time.  
 I had already factored this in to my logic design before coding the game by having a readyState variable that would be set at certain times to prevent the player input registering.
 
 After coding the difficulty settings I realised the player could change the difficulty level mid-game (as I'd done it myself a few times), but was able to prevent this by using the same readyState system from above.
 
+
 # Responsiveness
+
 By using the Bootstrap framework the UI is responsive. The layout of the site however is simple enough that I felt it was only suitable to make a difference between mobile screens and desktop.  
 
 Initially I had only done a breakpoint between XS (less than 576px) and MD (768px or greater) screens, with the game's main buttons becoming vertically stacked on the XS size screens - the Start/Difficulty/Scores area ('Control Box') were kept below the game area.  
@@ -128,3 +135,9 @@ Originally I was just going to make the buttons morph into plain rectangles, but
 - Safari - did not have access to a mac to test with myself, asked some fellow students to test it and they said it worked aside from the first sound of the first game not playing
 - Edge - works fine
 - Opera - works fine
+
+
+# Automated testing
+
+I had intended to use Jasmine for automated testing originally but due to the nature of the application I did not believe the use of automated tests was suitable, as there isn't much room to benefit from using them. 
+Instead a manual test driven approach was taken instead. 
