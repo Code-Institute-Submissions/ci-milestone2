@@ -187,6 +187,7 @@ function onClickStartButton() {
     pattern = [];
     patPos = 0;
     $("#btn-start").text("Restart"); // Changes label on UI start button
+    $("#btn-diff").attr("disabled", true);
     nextRound(); // Starts the first round
 }
 
@@ -243,6 +244,7 @@ function onClickGameButton(gb) {
         else {
             playButton(gb, false); // Dims button, plays bad buzzer
             readyState = OVER; // Ends the game
+            $("#btn-diff").attr("disabled", false);
         }
     }
 }
