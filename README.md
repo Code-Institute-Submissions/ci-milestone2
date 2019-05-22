@@ -42,6 +42,9 @@ The logic of the application will be along the lines of:
             2. Set high score if current score higher than previous high score
             3. Set ready state to pregame 
 
+The above logic, before developed fully, was expanded into psuedocode which can be found [here](docs/psuedo.txt)
+
+Additionally I have a included a [file](docs/sounds-info.txt) with a specification of the sounds to be used in this projects.
 
 ## Features
 
