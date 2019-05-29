@@ -137,11 +137,18 @@ async function playButton(button, successful, playerClick = false) {
 // For when the player takes too long to press a button on NORMAL or HARD modes
 // Changes game state to Game Over and plays the bad buzzers, all of them at once
 function timeout() {
-    readyState = OVER;
+    gameOver();
     playButton(btnYellow, false);
     playButton(btnBlue, false);
     playButton(btnGreen, false);
     playButton(btnRed, false);
+}
+
+// Handles when a game over event is called
+// Changes the readyState to the game over state and re-enables the difficulty button
+function gameOver(){
+    readyState = OVER; // Ends the game
+    $("#btn-diff").attr("disabled", false); // Re-enables the difficulty selector button
 }
 
 // Called at start of new game or when player has exhausted pattern array successfully
@@ -243,8 +250,7 @@ function onClickGameButton(gb) {
         // Handles player pressing the wrong button
         else {
             playButton(gb, false); // Dims button, plays bad buzzer
-            readyState = OVER; // Ends the game
-            $("#btn-diff").attr("disabled", false);
+            gameOver();
         }
     }
 }
