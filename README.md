@@ -9,6 +9,8 @@ and the player again attempts to follow the increased sequence.
 
 The project will be built in HTML and CSS with Bootstrap 4, using JavaScript with JQuery for the logic. 
 
+A playable version of this game can be found on my [Git Hub Pages](https://akenworthy87.github.io/ci-milestone2/)
+
 
 ## UX
  
